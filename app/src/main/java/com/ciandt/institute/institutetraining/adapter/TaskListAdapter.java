@@ -8,25 +8,25 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ciandt.institute.institutetraining.MainActivity;
 import com.ciandt.institute.institutetraining.R;
+import com.ciandt.institute.institutetraining.listener.DeleteTaskListener;
 import com.ciandt.institute.institutetraining.model.Task;
 
 import java.util.ArrayList;
 
 public class TaskListAdapter extends ArrayAdapter<Task> implements View.OnClickListener {
 
-    private ArrayList<Task> dataSet;
-    Context mContext;
+    private ArrayList<Task> tasks;
 
     private static class ViewHolder {
         TextView description;
         ImageView deleteButton;
     }
 
-    public TaskListAdapter(ArrayList<Task> data, Context context) {
+    public TaskListAdapter(Context context, ArrayList<Task> data) {
         super(context, R.layout.task_row_item, data);
-        this.dataSet = data;
-        this.mContext = context;
+        this.tasks = data;
     }
 
     @Override
@@ -48,7 +48,7 @@ public class TaskListAdapter extends ArrayAdapter<Task> implements View.OnClickL
         viewHolder.deleteButton = (ImageView) convertView.findViewById(R.id.delete_button);
 
         viewHolder.description.setText(task.getDescription());
-        //viewHolder.deleteButton.setOnClickListener();
+        viewHolder.deleteButton.setOnClickListener(new DeleteTaskListener(this, tasks, task));
 
         return convertView;
     }

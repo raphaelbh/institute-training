@@ -1,8 +1,8 @@
 package com.ciandt.institute.institutetraining;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -17,31 +17,45 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    ArrayList<Task> tasks = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Task task = new Task();
-        task.setId(1);
-        task.setDescription("description...");
+        Task task1 = new Task();
+        task1.setId(1);
+        task1.setDescription("description 1...");
 
-        ArrayList<Task> dataModels = new ArrayList<>();
-        dataModels.add(task);
+        Task task2 = new Task();
+        task2.setId(2);
+        task2.setDescription("description 2...");
 
-        TaskListAdapter adapter = new TaskListAdapter(dataModels, getApplicationContext());
+        Task task3 = new Task();
+        task3.setId(3);
+        task3.setDescription("description 3...");
 
-        ListView listView = (ListView)findViewById(R.id.list);
+        tasks.add(task1);
+        tasks.add(task2);
+        tasks.add(task3);
+
+        TaskListAdapter adapter = new TaskListAdapter(getApplicationContext(), tasks);
+
+        ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(adapter);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onClick(View v) {
+                Intent myIntent = new Intent(MainActivity.this,
+                        CreateTaskActivity.class);
+                startActivity(myIntent);
             }
         });
     }
