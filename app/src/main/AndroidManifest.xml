@@ -24,5 +24,4 @@
             android:label="@string/create_task">
         </activity>
     </application>
-
 </manifest>

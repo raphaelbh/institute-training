@@ -11,11 +11,9 @@ import android.view.MenuItem;
 import android.widget.ListView;
 
 import com.ciandt.institute.institutetraining.adapter.TaskListAdapter;
-import com.ciandt.institute.institutetraining.repository.TaskRepository;
+import com.ciandt.institute.institutetraining.service.TaskService;
 
 public class MainActivity extends AppCompatActivity {
-
-    private TaskRepository taskRepository = new TaskRepository();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,12 +24,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Bundle extras = getIntent().getExtras();
-        if (extras != null && extras.containsKey("taskRepository")) {
-            taskRepository = (TaskRepository) extras.get("taskRepository");
-        }
-
-        TaskListAdapter adapter = new TaskListAdapter(getApplicationContext(), taskRepository.getAll());
+        TaskService taskService = new TaskService(this);
+        TaskListAdapter adapter = new TaskListAdapter(getApplicationContext(), taskService.getAll());
 
         ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(adapter);
@@ -42,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,
                         CreateTaskActivity.class);
-                intent.putExtra("taskRepository", taskRepository);
                 startActivity(intent);
             }
         });

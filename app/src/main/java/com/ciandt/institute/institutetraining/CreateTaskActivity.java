@@ -8,7 +8,9 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.ciandt.institute.institutetraining.model.Task;
-import com.ciandt.institute.institutetraining.repository.TaskRepository;
+import com.ciandt.institute.institutetraining.service.TaskService;
+
+import static java.util.UUID.*;
 
 public class CreateTaskActivity extends Activity {
 
@@ -23,26 +25,17 @@ public class CreateTaskActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-               Bundle extras = getIntent().getExtras();
-                if (extras != null && extras.containsKey("taskRepository")) {
+                EditText inputDescription = (EditText) findViewById(R.id.description_task);
 
-                    EditText inputDescription = (EditText) findViewById(R.id.description_task);
+                Task task = new Task();
+                task.setId(randomUUID().toString());
+                task.setDescription(inputDescription.getText().toString());
 
-                    TaskRepository taskRepository = (TaskRepository) extras.get("taskRepository");
-                    Task lastTask = taskRepository.getAll().get(taskRepository.getAll().size() - 1);
+                TaskService taskService = new TaskService(getApplicationContext());
+                taskService.save(task);
 
-                    Task task = new Task();
-                    task.setId(lastTask.getId() + 1);
-                    task.setDescription(inputDescription.getText().toString());
-
-                    taskRepository.add(task);
-
-                    Intent intent = new Intent(CreateTaskActivity.this,
-                            MainActivity.class);
-                    intent.putExtra("taskRepository", taskRepository);
-                    startActivity(intent);
-
-                }
+                Intent intent = new Intent(CreateTaskActivity.this, MainActivity.class);
+                startActivity(intent);
 
             }
 

@@ -4,14 +4,14 @@ import java.io.Serializable;
 
 public class Task implements Serializable {
 
-    private Integer id;
+    private String id;
     private String description;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -21,5 +21,9 @@ public class Task implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String toString() {
+        return "{'id':'"+this.getId()+"', 'description':'"+this.getDescription()+"'}";
     }
 }
