@@ -8,7 +8,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.ciandt.institute.institutetraining.MainActivity;
 import com.ciandt.institute.institutetraining.R;
 import com.ciandt.institute.institutetraining.listener.DeleteTaskListener;
 import com.ciandt.institute.institutetraining.model.Task;

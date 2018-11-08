@@ -15,7 +15,7 @@
             android:layout_width="270dp"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:text="@string/description_placeholder" />
+            android:hint="@string/description_placeholder" />
 
         <Button
             android:id="@+id/save_task_button"

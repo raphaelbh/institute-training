@@ -11,13 +11,11 @@ import android.view.MenuItem;
 import android.widget.ListView;
 
 import com.ciandt.institute.institutetraining.adapter.TaskListAdapter;
-import com.ciandt.institute.institutetraining.model.Task;
-
-import java.util.ArrayList;
+import com.ciandt.institute.institutetraining.repository.TaskRepository;
 
 public class MainActivity extends AppCompatActivity {
 
-    ArrayList<Task> tasks = new ArrayList<>();
+    private TaskRepository taskRepository = new TaskRepository();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,23 +26,12 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Task task1 = new Task();
-        task1.setId(1);
-        task1.setDescription("description 1...");
+        Bundle extras = getIntent().getExtras();
+        if (extras != null && extras.containsKey("taskRepository")) {
+            taskRepository = (TaskRepository) extras.get("taskRepository");
+        }
 
-        Task task2 = new Task();
-        task2.setId(2);
-        task2.setDescription("description 2...");
-
-        Task task3 = new Task();
-        task3.setId(3);
-        task3.setDescription("description 3...");
-
-        tasks.add(task1);
-        tasks.add(task2);
-        tasks.add(task3);
-
-        TaskListAdapter adapter = new TaskListAdapter(getApplicationContext(), tasks);
+        TaskListAdapter adapter = new TaskListAdapter(getApplicationContext(), taskRepository.getAll());
 
         ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(adapter);
@@ -53,9 +40,10 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent myIntent = new Intent(MainActivity.this,
+                Intent intent = new Intent(MainActivity.this,
                         CreateTaskActivity.class);
-                startActivity(myIntent);
+                intent.putExtra("taskRepository", taskRepository);
+                startActivity(intent);
             }
         });
     }

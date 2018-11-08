@@ -1,9 +1,11 @@
 package com.ciandt.institute.institutetraining.model;
 
-public class Task {
+import java.io.Serializable;
 
-    Integer id;
-    String description;
+public class Task implements Serializable {
+
+    private Integer id;
+    private String description;
 
     public Integer getId() {
         return id;
