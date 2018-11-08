@@ -2,7 +2,7 @@
     <string name="app_name">Institute Training</string>
     <string name="action_settings">Settings</string>
     <string name="description">Description</string>
-    <string name="description_placeholder">description...</string>
+    <string name="description_placeholder">Enter a description...</string>
     <string name="create_task">Create Task</string>
-    <string name="save">Save</string>
+    <string name="send">Send</string>
 </resources>
