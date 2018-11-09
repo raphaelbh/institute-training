@@ -44,6 +44,7 @@ public class TaskListAdapter extends ArrayAdapter<Task> implements View.OnClickL
         viewHolder.deleteButton = (ImageView) convertView.findViewById(R.id.delete_button);
 
         viewHolder.description.setText(task.getDescription());
+        viewHolder.description.setTextSize(21);
         viewHolder.deleteButton.setOnClickListener(new DeleteTaskListener(this, task));
 
         return convertView;

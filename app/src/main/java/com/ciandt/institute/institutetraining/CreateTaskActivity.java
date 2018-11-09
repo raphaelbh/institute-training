@@ -3,8 +3,8 @@ package com.ciandt.institute.institutetraining;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 
 import com.ciandt.institute.institutetraining.model.Task;
@@ -20,7 +20,7 @@ public class CreateTaskActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_task);
 
-        Button saveButton = (Button) findViewById(R.id.save_task_button);
+        FloatingActionButton saveButton = (FloatingActionButton) findViewById(R.id.save_task_button);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
