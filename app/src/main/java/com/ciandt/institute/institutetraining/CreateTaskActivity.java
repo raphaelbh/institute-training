@@ -26,7 +26,9 @@ public class CreateTaskActivity extends Activity {
             public void onClick(View v) {
 
                 EditText inputDescription = (EditText) findViewById(R.id.description_task);
-                createTask(inputDescription.getText().toString());
+                String description = inputDescription.getText().toString();
+
+                // TODO: Criar a atividade aqui
 
                 Intent intent = new Intent(CreateTaskActivity.this, MainActivity.class);
                 startActivity(intent);
@@ -34,16 +36,6 @@ public class CreateTaskActivity extends Activity {
             }
 
         });
-
-    }
-
-    private void createTask(String description) {
-
-        Task task = new Task();
-        task.setDescription(description);
-
-        TaskService taskService = new TaskService(getApplicationContext());
-        taskService.save(task);
 
     }
 
