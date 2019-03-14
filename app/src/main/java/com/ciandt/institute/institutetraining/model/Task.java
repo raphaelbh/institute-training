@@ -2,10 +2,16 @@ package com.ciandt.institute.institutetraining.model;
 
 import java.io.Serializable;
 
+import static java.util.UUID.randomUUID;
+
 public class Task implements Serializable {
 
     private String id;
     private String description;
+
+    public Task() {
+        this.setId(randomUUID().toString());
+    }
 
     public String getId() {
         return id;
