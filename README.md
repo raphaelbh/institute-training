@@ -1,7 +1,7 @@
 # Task Manager - Institute Training
 
 [![Project Status](https://img.shields.io/static/v1?label=project%20status&message=complete&color=success&style=flat-square)](#)
-[![GitHub License](https://img.shields.io/github/license/raphaelbh/aws-cognito?style=flat-square)](#)
+[![GitHub License](https://img.shields.io/github/license/raphaelbh/institute-training?style=flat-square)](#)
 
 Project used in training for the [CI&T Institute](https://ciandt.com/br/pt-br/instituto).
 
